@@ -1,4 +1,6 @@
-import { Common, HIDDEN_SCREEN } from './Common.esm.js'
+import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.esm.js'
+import { canvas } from './Canvas.esm.js';
+
 
 const gameLevels = [
     {
@@ -34,7 +36,7 @@ class LevelSelect extends Common {
 
     buttonOnClickHandler(event) {
         this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
-        //pokaz plansze z gra
+        this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
         
     }
 }
