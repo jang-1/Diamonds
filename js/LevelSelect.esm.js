@@ -1,5 +1,11 @@
-import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.esm.js'
+import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.esm.js';
 import { canvas } from './Canvas.esm.js';
+import { DATALOAED_EVENT_NAME, loader } from './Loader.esm.js';
+import { game } from './Game.esm.js';
+import { media } from './Media.esm.js';
+
+
+
 
 
 const gameLevels = [
@@ -37,6 +43,12 @@ class LevelSelect extends Common {
     buttonOnClickHandler(event) {
         this.changeVisibilityScreen(this.element, HIDDEN_SCREEN);
         this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
+        this.loadLevel(event.currentTarget.value);
+    }
+
+    loadLevel(level) {
+        media.backgroundImage = loader.loadImage('images/levelbackground.png');
+        window.addEventListener(DATALOAED_EVENT_NAME, () => game.playLevel(level));
         
     }
 }

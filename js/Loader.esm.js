@@ -1,9 +1,10 @@
 import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.esm.js';
 
-const DATALOAED_EVENT_NAME = 'dataLoaded'
-const LOAD_CURRENT_ID = 'js-loading-screen__current';
+const LOAD_CURRENT_ID = 'js-loading-screen-current';
 const LOAD_TOTAL_ID = 'js-loading-screen-total';
-const LOADER_ELEMENT_ID = 'loading-screen__info';
+const LOADER_ELEMENT_ID = 'js-loading-screen';
+
+export const DATALOAED_EVENT_NAME = 'dataLoaded'
 
 class Loader extends Common { 
     constructor() { 

@@ -1,4 +1,6 @@
-import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.esm.js';
+import { Common } from './Common.esm.js';
+import { media } from './Media.esm.js';
+import { game } from './Game.esm.js'
 
 const GAME_SCREEN_ID = 'js-game-screen';
 
@@ -15,10 +17,33 @@ class Canvas extends Common {
 
     configureCanvas() {
         this.context = this.element.getContext('2d');
-        this.context.width = CANVAS_WIDTH;
-        this.context.height = CANVAS_HEIGHT;
+        this.context.canvas.width = CANVAS_WIDTH;
+        this.context.canvas.height = CANVAS_HEIGHT;
         this.context.font = '20px Arial white';
         this.context.fillStyle = 'white';
+    }
+
+    drawGameOnCanvas(gameState) {
+        this.drawBackground();
+        this.drawPointsToWin(gameState.pointsToWin);
+        this.drawPlayerPoints(gameState.getPlayerPoints());
+        this.drawLeftMovment(gameState.getLeftMovement());
+    }
+
+    drawBackground() {
+        this.context.drawImage(media.backgroundImage, 0, 0);
+    }
+
+    drawPointsToWin(pointsToWin) {
+        this.context.fillText(`${pointsToWin}`, 520, 92);
+    }
+
+    drawPlayerPoints(playerPoints) {
+        this.context.fillText(`${playerPoints}`, 520, 163);
+    }
+
+    drawLeftMovment(leftMovement) {
+        this.context.fillText(`${leftMovement}`, 520, 234);
     }
 
 
