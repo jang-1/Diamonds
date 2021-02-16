@@ -33,4 +33,6 @@ export class GameState {
 	get pointsToWin() {
 		return this._pointsToWin;
 	}
+
+	mixDiamonds() {}
 }
