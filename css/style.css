@@ -35,7 +35,7 @@ body {
   transform-origin: center;
   width: 640px;
   height: 480px;
-  background-image: url("/images/splashscreen.png");
+  background-image: url("../images/splashscreen.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -62,7 +62,7 @@ body {
   margin-top: 10px;
   padding: 0;
   border: 0;
-  background-image: url("/images/button-start.png");
+  background-image: url("../images/button-start.png");
   background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
