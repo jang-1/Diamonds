@@ -9,7 +9,7 @@ import { DIAMOND_SIZE, NUMBER_OF_DIAMONDS_TYPES } from './Diamond.esm.js';
 import { resultScreen } from './ResultScreen.esm.js';
 import { userData } from './UserData.esm.js';
 
-const DIAMONDS_ARRAY_WIDTH = 8;
+export const DIAMONDS_ARRAY_WIDTH = 8;
 const DIAMONDS_ARRAY_HEIGHT = DIAMONDS_ARRAY_WIDTH + 1;
 const LAST_ELEMENT_DIAMONDS_ARRAY = DIAMONDS_ARRAY_WIDTH * DIAMONDS_ARRAY_HEIGHT - 1;
 const SWAPING_SPEED = 8;
@@ -27,6 +27,8 @@ class Game extends Common {
         window.removeEventListener(DATALOAED_EVENT_NAME, this.playLevel);
         this.gameState = new GameState(level, numberOfMovements, pointsToWin, board, media.diamondsSprite)
         this.changeVisibilityScreen(canvas.element, VISIBLE_SCREEN);
+		media.isInLevel = true;
+		media.playBackgroundMusic();
         this.animate();
     }
 
@@ -87,6 +89,7 @@ class Game extends Common {
             }
             this.swapDiamonds();
 
+			media.playSwapSound();
             this.gameState.setIsSwaping(true);
             this.gameState.decreasePointsMovement();
             mouseController.state = 0;
@@ -246,12 +249,12 @@ class Game extends Common {
 			}
 
 			//move right => check if is in the middle of the column
-			if(
+			if (
 				index % DIAMONDS_ARRAY_WIDTH < DIAMONDS_ARRAY_WIDTH - 1
 				&& Math.floor(index / DIAMONDS_ARRAY_WIDTH) > 1
 				&& Math.floor(index / DIAMONDS_ARRAY_WIDTH) < DIAMONDS_ARRAY_HEIGHT - 1
-				&& diamond.kind === diamond[index - DIAMONDS_ARRAY_WIDTH + 1].kind
-				&& diamond.kind === diamond[index - DIAMONDS_ARRAY_WIDTH + 1].kind
+				&& diamond.kind === diamonds[index - DIAMONDS_ARRAY_WIDTH + 1].kind
+				&& diamond.kind === diamonds[index - DIAMONDS_ARRAY_WIDTH + 1].kind
 			) {
 				return true;
 			}
@@ -411,6 +414,8 @@ class Game extends Common {
 
     checkEndOfGame() {
         if(!this.gameState.getLeftMovement() && !this.gameState.getIsMoving() && !this.gameState.getIsSwaping()) {
+			media.isInLevel = false;
+			media.stopBackgroundMusic();
             const isPlayerWinner = this.gameState.isPlayerWinner();
 			const currentLevel = Number(this.gameState.level);
 

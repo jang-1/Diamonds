@@ -1,7 +1,7 @@
 import { Common, HIDDEN_SCREEN, VISIBLE_SCREEN } from './Common.esm.js';
 import { levelSelect } from './LevelSelect.esm.js';
 import { CANVAS_WIDTH, CANVAS_HEIGHT} from './Canvas.esm.js';
-
+import { settings } from './Settings.esm.js';
 
 export const SCALE_PROPERTY = '--scale-value';
 
@@ -33,8 +33,8 @@ class MainMenu extends Common {
     }
 
     showSettingsScreen() {
-        console.log("Ustawienia gry");
-    }
+		this.changeVisibilityScreen(settings.element, VISIBLE_SCREEN);
+	}
 
     resizeGameWindow() {
         const { innerWidth: width, innerHeight: height } = window;
